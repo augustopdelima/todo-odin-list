@@ -1,19 +1,17 @@
-import { Todo } from '../domain/Todo.js';
+import { Todo } from "../domain/Todo.js";
 
-export class AddTodo {
+export class DeleteTodo {
     constructor(todoRepository) {
         this.todoRepository = todoRepository;
     }
 
-    execute(projectId, title, description, dueDate, priority) {
+    execute(projectId, todoId) {
         const project = this.todoRepository.getById(projectId);
         if (!project) {
             throw new Error('Project not found');
         }
 
-        const newTodo = new Todo(Date.now().toString(), title, description, priority, dueDate);
-
-        project.addTodo(newTodo);
+        project.removeTodo(todoId);
         this.todoRepository.update(project);
     }
 }

@@ -4,7 +4,7 @@ export class ToggleTodo {
     }
 
     execute(projectId, todoId) {
-        const project = this.todoRepository.getProjectById(projectId);
+        const project = this.todoRepository.getById(projectId);
         if (!project) throw new Error('Project not found');
         if (!project.hasTodo(todoId)) throw new Error('Todo not found');
 

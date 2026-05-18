@@ -1,22 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+    <link rel="stylesheet" href="styles/styles.css"> 
 </head>
+
 <body>
 
-    <h1>Projects</h1>
-    <input id="project-input" placeholder="New project" />
-    <button id="add-project">Add Project</button>
-    <ul id="projects"></ul>
+    <aside class="sidebar">
+        <h2>Projects</h2>
 
-    <h2>Todos</h2>
-    <input id="todo-input" placeholder="New todo" />
-    <button id="add-todo">Add Todo</button>
-    <ul id="todos"></ul>
+        <div class="project-input">
+            <input id="project-input" name="project-input" placeholder="New project" />
+            <button id="add-project">Add Project</button>
+        </div>
+        
+        <ul id="projects"></ul>
+    </aside>
+
+    <main class="content">
+        <h2>Todos</h2>
+        <button id="add-todo">Add Todo</button>
+        <ul id="todos"></ul>
+    </main>
+
+    <dialog id="todo-dialog">
+        <form id="todo-form" method="dialog">
+            <label for="todo-title">Title:</label>
+            <input id="todo-title-input" name="todo-title" required />
+
+            <label for="todo-description">Description:</label>
+            <textarea id="todo-description-input" name="todo-description"
+                placeholder="Type the description here!"></textarea>
+
+            <label for="todo-due-date">Due Date:</label>
+            <input id="todo-due-date-input" name="todo-due-date" type="date" required />
+
+            <label for="todo-priority">Priority:</label>
+            <select id="todo-priority-input" name="todo-priority" required>
+                <option value="1">Low</option>
+                <option value="5">Medium</option>
+                <option value="10">High</option>
+            </select>
+
+            <div class="modal-buttons">
+                <button type="submit" id="confirm-todo">Confirm</button>
+                <button type="button" id="cancel-todo">Cancel</button>
+            </div>
+        </form>
+    </dialog>
 
     <script type="module" src="src/main.js"></script>
 </body>
+
 </html>

@@ -40,6 +40,22 @@ export class Todo {
         return new Todo(this.id, this.title, this.description, priority, this.dueDate, this.completed);
     }
 
+    update({ title, description, dueDate, priority }) {
+        if (!title) throw new Error('Title is required');
+        if (!dueDate) {
+            throw new Error('Due date must be a Date');
+        }
+
+        this._validatePriority(priority);
+
+        this.title = title;
+        
+        
+        this.description = description;
+        this.priority = priority;
+        this.dueDate = dueDate;
+    }
+
     toggle() {
         this.completed = !this.completed;
     }

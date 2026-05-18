@@ -1,0 +1,275 @@
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg-sidebar: #f8fafc;
+    --bg-main:#FFFFFF;
+    --text-main:#1e293b;
+    --border:#e2e8f0;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --success: #22c55e;
+    --active: #e0e7ff;
+}
+
+
+body {
+    font-family: "Inter", -apple-system ,system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    color: var(--text-main);
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    color: var(--text-muted);
+    margin-bottom:1.5rem;
+}
+
+#projects {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#projects li {
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+#projects li:hover {
+    background: var(--border);
+}
+
+.delete-project-btn {
+    background : transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size:0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.2s;
+    opacity: 0;
+}
+
+#projects li:hover .delete-project-btn {
+    opacity: 1;
+}
+
+.delete-project-btn:hover {
+    color:var(--danger);
+    background: #fee2e2;
+}
+
+
+.active-project {
+    background: var(--active);
+    color: var(--primary);
+    font-weight: 600;;
+}
+
+
+.content {
+    flex: 1;
+    padding: 2rem 3rem;
+    background-color: var(--bg-main);
+    overflow-y:auto;
+}
+
+
+
+.project-input {
+    display: flex;
+    gap:0.5rem;
+    margin-bottom: 2rem;
+}
+
+.project-input button {
+    background: var(--primary);
+    color:white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+
+.content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+#add-todo {
+    background: var(--primary);
+    color:white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border: 8px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+#todos {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.todo-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+    position:relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.todo-details {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.todo-desc {
+    color: #64748b; 
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    font-style: italic;
+}
+
+
+.todo-metadata {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-top: 4px;
+}
+
+
+.todo-date, .todo-priority-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.icon {
+    font-size: 0.85rem;
+    filter: grayscale(0.5); 
+}
+
+
+.todo-date {
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.delete-todo-btn {
+    align-self: flex-end;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: #64748b;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-todo-btn:hover {
+    background-color: var(--danger);
+    color: white;
+    border-color: var(--danger);
+}
+
+
+.priority-High {
+    border-left: 5px solid;
+    border-color: var(--danger);
+}
+.priority-Medium {
+    border-left: 5px solid;
+    border-color: var(--warning);
+}
+.priority-Low {
+    border-left: 5px solid;
+    border-color: var(--success);
+}
+
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+dialog::backdrop {
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#todo-form label {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+#todo-form input,
+#todo-form textarea,
+#todo-form select {
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}

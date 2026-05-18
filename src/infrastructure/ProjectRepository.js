@@ -36,6 +36,15 @@ export class ProjectRepository {
 
     /**
      * 
+     * @param {String} id 
+     */
+    deleteProject(id) {
+        const data = this._load().filter(p => p.id !== id);
+        this._save(data);
+    }
+
+    /**
+     * 
      * @param {Project} project 
      */
     save(project) {
