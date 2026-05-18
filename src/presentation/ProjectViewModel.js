@@ -2,6 +2,8 @@ export class ProjectViewModel {
 
     INITIAL_PROJECT = 0;
 
+    DEFAULT_PROJECT_NAME = 'Inbox';
+
     constructor({ repo, addProject, addTodo, toggleTodo, deleteTodo, deleteProject, editTodo }) {
         this.repo = repo;
         this.addProject = addProject;
@@ -30,6 +32,23 @@ export class ProjectViewModel {
         return previousSelectedProject || this.projects[this.INITIAL_PROJECT] || null;
     }
 
+    _ensureDefaultProject() {
+
+        const existingProject = this.projects.find(
+            p => p.name === this.DEFAULT_PROJECT_NAME
+        );
+
+        if (existingProject) {
+            return existingProject;
+        }
+
+        const newProject =
+            this.addProject.execute(this.DEFAULT_PROJECT_NAME);
+
+        this.projects.push(newProject);
+
+        return newProject;
+    }
 
     _previousSelectedProject(projects) {
         return projects.find(p => p.id === this.selectedProject?.id)    ;
@@ -46,8 +65,15 @@ export class ProjectViewModel {
     }
 
     createTodo({ title, description, dueDate, priority }) {
-        if (!this.selectedProject) return;
-        this.addTodo.execute(this.selectedProject.id, title, description, dueDate, Number(priority));
+
+        let project = this.selectedProject;
+
+        if(!project) {
+            project = this._ensureDefaultProject();
+            this.selectedProject = project;
+        }
+
+        this.addTodo.execute(project.id, title, description, dueDate, Number(priority));
         this.load();
     }
     
