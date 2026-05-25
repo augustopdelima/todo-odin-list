@@ -100,16 +100,21 @@ export class View {
         if (!selectedProject) return;
         selectedProject.todos.forEach(todo => {
             const li = document.createElement('li');
-            li.textContent = todo.title + (todo.completed ? ' (done)' : '');
-            li.style.textDecoration = todo.completed ? 'line-through' : 'none';
-            li.onclick = () => this.vm.toggleATodo(todo.id);
+
+            const liTitle = document.createElement('h1');
+            liTitle.textContent = todo.title + (todo.completed ? ' (done)' : '');
+            liTitle.classList.add('todo-title');
+            li.appendChild(liTitle);
+
 
             const priorityClass = `priority-${this.PRIORITY_TEXT[todo.priority]}`;
 
             li.classList.add("todo-item");
             li.classList.add(priorityClass);
 
-
+            if (todo.completed) {
+                li.classList.add('completed');
+            }
 
             const todoInfo = document.createElement('div');
             todoInfo.classList.add('todo-details');
@@ -137,7 +142,6 @@ export class View {
 
             deleteBtn.classList.add('delete-todo-btn');
 
-            li.appendChild(deleteBtn);
             
             const editBtn = document.createElement('button');
             editBtn.textContent = 'Edit';
@@ -155,9 +159,26 @@ export class View {
                
             };
 
-            
+            editBtn.classList.add('edit-todo-btn');
 
-            li.appendChild(editBtn);
+            const completeToggleBtn = document.createElement('button');
+            completeToggleBtn.textContent = todo.completed ? 'Mark Undone' : 'Mark Done';
+            completeToggleBtn.onclick = (e) => {
+                e.stopPropagation();
+                this.vm.toggleATodo(todo.id);
+            };
+
+            completeToggleBtn.classList.add('toggle-complete-btn');
+  
+            
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('todo-button-container');
+            buttonContainer.appendChild(completeToggleBtn);
+            buttonContainer.appendChild(editBtn);
+            buttonContainer.appendChild(deleteBtn);
+        
+
+            li.appendChild(buttonContainer);
 
             this.todoList.appendChild(li);
         });
