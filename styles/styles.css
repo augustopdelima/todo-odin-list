@@ -351,3 +351,28 @@ dialog::backdrop {
     margin-top: 1rem;
 }
 
+.modal-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-buttons .cancel-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #64748b;
+}
+.modal-buttons .cancel-btn:hover {
+    background-color: var(--border);
+}
+
+.modal-buttons .save-btn {
+    background: var(--primary);
+    color:white;
+}
+.modal-buttons .save-btn:hover {
+    background: var(--primary-hover);
+}
+
